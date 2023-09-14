@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: gatewayservice
+  labels:
+    run: gatewayservice
+spec:
+  ports:
+  - port: 5555
+    protocol: TCP
+  selector:
+    app: gatewayservice
+  type: NodePort

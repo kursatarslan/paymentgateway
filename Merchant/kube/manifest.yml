@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: merchant
+  name: merchant
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: merchant
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: merchant
+    spec:
+      containers:
+      - image: kursatarslan/merchant:latest
+        name: merchant
+        imagePullPolicy: Always
+        resources: {}
+        ports:
+          - containerPort: 5008 
+status: {}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: merchant
+  labels:
+    run: merchant
+spec:
+  ports:
+  - port: 5008
+    protocol: TCP
+  selector:
+    app: merchant
+  type: NodePort

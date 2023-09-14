@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: identityserver
+  name: identityserver
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: identityserver
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: identityserver
+    spec:
+      containers:
+      - image: kursatarslan/identityserver:1.2
+        name: identityserver
+        imagePullPolicy: Always
+        resources: {}
+        ports:
+          - containerPort: 5009
+        env:
+          - name: ASPNETCORE_URLS
+            value: http://+:5009 
+          - name: ASPNETCORE_ENVIRONMENT
+            value: Production 

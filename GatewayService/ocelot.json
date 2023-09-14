@@ -1,0 +1,55 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/paymentgateway/{everything}",
+      "UpstreamHttpMethod": [ "POST", "PUT", "GET" ],
+      "RateLimitOptions": {
+        "ClientWhitelist": [], 
+        "EnableRateLimiting": true, 
+        "Period": "30s", 
+        "PeriodTimespan": 10, 
+        "Limit": 100000 
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "PaymentGatewayWebApplicationKey",
+        "AllowedScopes": ["paymentgatewayapi"]
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5003
+        }
+      ],
+      "UpstreamPathTemplate": "/product/{everything}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "RateLimitOptions": {
+        "ClientWhitelist": [], 
+        "EnableRateLimiting": true, 
+        "Period": "1s", 
+        "PeriodTimespan": 10, 
+        "Limit": 100000 
+      },
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "ProductWebApplicationKey",
+        "AllowedScopes": ["productapi"]
+      }
+    }
+  ],
+  "GlobalConfiguration": {
+    "RequestIdKey": "OcRequestId",
+    "AdministrationPath": "/administration",
+    "BaseUrl": "http://localhost:5555"
+  }
+}

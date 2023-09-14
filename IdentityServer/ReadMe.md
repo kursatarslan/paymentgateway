@@ -1,0 +1,1 @@
+http://localhost:5009/.well-known/openid-configuration

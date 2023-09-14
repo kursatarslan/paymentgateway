@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: gatewayservice
+  name: gatewayservice
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: gatewayservice
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: gatewayservice
+    spec:
+      containers:
+      - image: kursatarslan/gatewayservice:1.2
+        name: gatewayservice
+        imagePullPolicy: Always
+        resources: {}
+        ports:
+          - containerPort: 5555
+        env:
+          - name: ASPNETCORE_URLS
+            value: http://+:5555 
+          - name: ASPNETCORE_ENVIRONMENT
+            value: Production 
