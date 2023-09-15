@@ -1,3 +1,37 @@
+1. Backend for Frontend (BFF): I began by creating a .NET Backend for Frontend (BFF) server, which served as the intermediary between the React frontend and the various backend services.
+
+
+2. SSO Integration: I implemented a Single Sign-On (SSO) mechanism to allow the React application to obtain access tokens from the SSO service. These tokens were used for user authentication and authorization.
+
+
+3. React Frontend: I developed the React frontend, which included a login page that interacted with the SSO service to acquire access tokens. The access tokens were stored securely using state management.
+
+
+4. Payment Data Request: In the React frontend, I created a payment form to collect payment data. I then sent this payment data as a request to the .NET BFF.
+
+
+5. API Gateway (Ocelot): Using Ocelot, I built an API Gateway that received the payment data request from the React frontend. Instead of sending the request directly to the bank service, I introduced MassTransit to the flow.
+
+
+6. MassTransit Integration: Within the API Gateway, I integrated MassTransit to publish the payment request as a message. This message was picked up by a background service, which subscribed to the message and forwarded it to the Payment Gateway.
+
+
+7. Payment Gateway: The Payment Gateway received the message from MassTransit and processed the payment. Unfortunately, I was not able to complete the next steps, but the idea was to have a Push Notification service listen for the payment confirmation.
+
+
+8. Push Notification Service: The Push Notification service was intended to listen for payment confirmation events and use SignalR Hub for WebSocket connections to notify the React frontend using Toastr notifications, indicating the successful completion of the payment.
+
+![image](https://github.com/kursatarslan/paymentgateway/assets/9142092/0d069077-e8d0-42e1-847d-5b55ce496e2e)
+
+![image](https://github.com/kursatarslan/paymentgateway/assets/9142092/52f87e1a-05fc-4930-918a-8ca07b374848)
+
+![image](https://github.com/kursatarslan/paymentgateway/assets/9142092/c569774b-78e2-4632-8eec-1d3b16f88681)
+
+![image](https://github.com/kursatarslan/paymentgateway/assets/9142092/1efe8bd8-b60c-4886-9342-4ed4f6993c4d)
+
+![image](https://github.com/kursatarslan/paymentgateway/assets/9142092/6a048c5f-bcfd-4b5e-ace2-a0b96eebeb1c)
+
+
 # IdentityGatewayDemo
 Ocelot + IdentityServer4 to build microservice gateway based on .NET Core plateform
 
